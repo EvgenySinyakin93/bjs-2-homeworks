@@ -12,17 +12,17 @@ Student.prototype.setSubject = function (subjectName) {
 
 Student.prototype.addMarks = function (...marks) {
 //п.3
-    if(this.hasOwnProperty(marks) === true) {
-        return 0;
-    } else {
+    if(this.hasOwnProperty('marks') === true) {
         this.marks.push(...marks);
+    } 
+    if(this.excluded === true) {
+        return ; //добавление невозможно
     }
-  
 }
 
 Student.prototype.getAverage = function () {
   //п.4
-  if(this.hasOwmProperty(marks) === false || this.marks.length === 0) {
+  if(this.marks.length === 0) {
     return 0;
 } else {
     return (this.marks.reduce((acc, item) => acc + item, 0) / this.marks.length);
