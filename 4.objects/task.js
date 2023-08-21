@@ -15,14 +15,11 @@ Student.prototype.addMarks = function (...marks) {
     if(this.hasOwnProperty('marks') === true) {
         this.marks.push(...marks);
     } 
-    if(this.excluded === true) {
-        return ; //добавление невозможно
-    }
 }
 
 Student.prototype.getAverage = function () {
   //п.4
-  if(this.marks.length === 0) {
+  if(this.hasOwnProperty('marks') != true || this.marks.length === 0) {
     return 0;
 } else {
     return (this.marks.reduce((acc, item) => acc + item, 0) / this.marks.length);
