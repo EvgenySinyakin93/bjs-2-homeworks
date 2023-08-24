@@ -15,10 +15,10 @@ class PrintEditionItem {
   //п.3
   set state(number) {
     this._state = number;
-    if (this.state < 0) {
+    if (number < 0) {
       this._state = 0;
-    } else if (this.state > 100) {
-      this._state = 110;
+    } else if (number > 100) {
+      this._state = 100;
     } else {
       this._state = this.state;
     }
@@ -103,29 +103,25 @@ class Library extends PrintEditionItem{
   }
   //п.2
   addBook(book) {
-    if (this.state > 30) {
+    if (book.state > 30) {
       this.books.push(book);
     }
   }
   //п.3
   findBookBy(type, value) {
-    for(let i = 0; i < this.books.length; i++) {
-      if(this.books[i][type] === value) {
-        return this.books[i];
-      }
+      const findResult = this.books.find((item) =>
+       item[type] === value);
+      return findResult || null;
     }
-    return null;
-  }
+
   //п.4
   giveBookByName(bookName) {
-    for (let i = 0; i < this.books.length; i++) {
-      if (this.books[i].name === bookName) {
-        return this.books.splice(i, 1)[0];
-      }
+    const book = this.findBookBy("name", bookName);
+    if (!book) return null;
+    this.books = this.books.filter((item) => item.name !== bookName);
+    return book;
     }
-    return null;
   }
-}
 
 const library = new Library("Библиотека имени Ленина");
 
@@ -162,20 +158,23 @@ console.log("Количество книг после выдачи: " + library.
 class Student{
   constructor(name) {
     this.name = name;
-    this.marks = [];
+    this.marks = {
+      subject: [],
+    };
   }
 //п.2
-addMark(mark){
-    this.addMark = mark;
+addMark(mark, subject){
     //*
-    if(2 < this.mark < 5){
+    if(2 > mark > 5){
       return 0;
     }
     //*
-    if(this.name != true){
-      this.predmet = [];
-  //*
-     this.marks.push(this.predmet, mark); 
+    if(this[subject] != true){
+      this[subject] = [];
+      this[subject].push(mark); 
+  //* 
+    } else {
+      this[subject].push(mark); 
     }
 }
 }
