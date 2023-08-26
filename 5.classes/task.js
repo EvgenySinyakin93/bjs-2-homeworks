@@ -95,7 +95,7 @@ console.log(picknick.state); //15
 //Задача 2
 
 //п.1
-class Library extends PrintEditionItem{
+class Library extends PrintEditionItem {
   constructor(name, releaseDate, pagesCount) {
     super(releaseDate, pagesCount);
     this.name = name;
@@ -109,10 +109,9 @@ class Library extends PrintEditionItem{
   }
   //п.3
   findBookBy(type, value) {
-      const findResult = this.books.find((item) =>
-       item[type] === value);
-      return findResult || null;
-    }
+    const findResult = this.books.find((item) => item[type] === value);
+    return findResult || null;
+  }
 
   //п.4
   giveBookByName(bookName) {
@@ -120,8 +119,8 @@ class Library extends PrintEditionItem{
     if (!book) return null;
     this.books = this.books.filter((item) => item.name !== bookName);
     return book;
-    }
   }
+}
 
 const library = new Library("Библиотека имени Ленина");
 
@@ -151,30 +150,61 @@ console.log("Количество книг до выдачи: " + library.books.
 library.giveBookByName("Машина времени");
 console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3
 
-
 //Задача 3
 
 //п.1
-class Student{
+class Student {
   constructor(name) {
     this.name = name;
     this.marks = {
-      subject: [],
+      физика: [4, 5, 5, 4],
+      химия: [3, 4],
+      литература: [4],
+      ифнорматика: [5, 5, 5],
     };
   }
-//п.2
-addMark(mark, subject){
+  //п.2
+  addMark(mark, subject) {
     //*
-    if(2 > mark > 5){
+    if (2 > mark || mark > 5) {
       return 0;
     }
     //*
-    if(this[subject] != true){
-      this[subject] = [];
-      this[subject].push(mark); 
-  //* 
+    if (!this.marks[subject]) {
+      this.marks[subject] = [];
+      this.marks[subject].push(mark);
+      //*
     } else {
-      this[subject].push(mark); 
+      this.marks[subject].push(mark);
     }
+  }
+
+  //п.3
+  getAverageBySubject(subject) {
+    if (!this.marks[subject]) {
+      return 0;
+    } else {
+      return (
+        this.marks[subject].reduce((acc, item) => acc + item, 0) / this.marks[subject].length
+      );
+    }
+  }
+  //п.4
+  getAverage(subject){
+      Object.keys(this.marks);
+      this.getAverageBySubject.reduce((acc, item) => acc + item, 0) / this.marks[subject].length;
+      sum += this.getAverageBySubject;
+      return sum / this.getAverageBySubject.length;
+  }
 }
-}
+
+const student = new Student("Олег Никифоров");
+student.addMark(5, "химия");
+student.addMark(5, "химия");
+student.addMark(5, "физика");
+student.addMark(4, "физика");
+student.addMark(6, "физика"); // Оценка не добавится, так как больше 5
+student.getAverageBySubject("физика"); // Средний балл по предмету физика 4.5
+student.getAverageBySubject("биология"); // Вернёт 0, так как по такому предмету нет никаких оценок.
+student.getAverage(); // Средний балл по всем предметам 4.75
+
