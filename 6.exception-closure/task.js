@@ -42,9 +42,9 @@ class Triangle{
         const p = 0.5 * this.perimeter;
         return Number(Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c)).toFixed(3));
     }
-
+  }
     //п.3
-    getTriangle(a, b, c){
+    function getTriangle(a, b, c){
         try {
             return new Triangle(a, b, c);
         } catch (error) {
@@ -58,4 +58,3 @@ class Triangle{
             }
         }
     }
-}
