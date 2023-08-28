@@ -156,12 +156,7 @@ console.log("Количество книг после выдачи: " + library.
 class Student {
   constructor(name) {
     this.name = name;
-    this.marks = {
-      физика: [4, 5, 5, 4],
-      химия: [3, 4],
-      литература: [4],
-      ифнорматика: [5, 5, 5],
-    };
+    this.marks = {};
   }
   //п.2
   addMark(mark, subject) {
@@ -181,20 +176,24 @@ class Student {
 
   //п.3
   getAverageBySubject(subject) {
+    this.marks[subject] = [];
     if (!this.marks[subject]) {
       return 0;
     } else {
       return (
-        this.marks[subject].reduce((acc, item) => acc + item, 0) / this.marks[subject].length
+        this.marks[subject].reduce((acc, item) => acc + item, 0) /
+        this.marks[subject].length
       );
     }
   }
   //п.4
-  getAverage(subject){
-      Object.keys(this.marks);
-      this.getAverageBySubject.reduce((acc, item) => acc + item, 0) / this.marks[subject].length;
-      sum += this.getAverageBySubject;
-      return sum / this.getAverageBySubject.length;
+  getAverage(subject) {
+    let sum = 0;
+    let keysWithItems = Object.keys(this.marks);
+    this.getAverageBySubject[subject].reduce((acc, item) => acc + item, 0) /
+      this.marks[subject].length;
+    sum += this.getAverageBySubject;
+    return sum / this.getAverageBySubject.length;
   }
 }
 
@@ -207,4 +206,3 @@ student.addMark(6, "физика"); // Оценка не добавится, т�
 student.getAverageBySubject("физика"); // Средний балл по предмету физика 4.5
 student.getAverageBySubject("биология"); // Вернёт 0, так как по такому предмету нет никаких оценок.
 student.getAverage(); // Средний балл по всем предметам 4.75
-
