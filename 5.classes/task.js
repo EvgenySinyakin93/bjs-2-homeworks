@@ -178,22 +178,22 @@ class Student {
   getAverageBySubject(subject) {
     this.marks[subject] = [];
     if (!this.marks[subject]) {
-      return 0;
+      return 0;// если нет предмета возвраз 0
     } else {
       return (
         this.marks[subject].reduce((acc, item) => acc + item, 0) /
-        this.marks[subject].length
+        this.marks[subject].length //считаем сумму оценок и делим на их количество
       );
     }
   }
   //п.4
-  getAverage(subject) {
+  getAverage() {
     let sum = 0;
-    let keysWithItems = Object.keys(this.marks);
-    this.getAverageBySubject[subject].reduce((acc, item) => acc + item, 0) /
-      this.marks[subject].length;
-    sum += this.getAverageBySubject;
-    return sum / this.getAverageBySubject.length;
+    let keysWithItems = Object.keys(this.marks); //используем для получения названий предметов
+    for (let i = 0; i < keysWithItems.length; i++) {
+     sum = sum + this.getAverageBySubject[keysWithItems[i]] //перебираем предметы и суммируем средние оценки
+    }
+    return sum / this.getAverageBySubject[keysWithItems[i].length]; //возвращ деление суммы на кол-во предметов
   }
 }
 
