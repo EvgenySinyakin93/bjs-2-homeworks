@@ -176,7 +176,6 @@ class Student {
 
   //п.3
   getAverageBySubject(subject) {
-    this.marks[subject] = [];
     if (!this.marks[subject]) {
       return 0;// если нет предмета возвраз 0
     } else {
@@ -191,9 +190,9 @@ class Student {
     let sum = 0;
     let keysWithItems = Object.keys(this.marks); //используем для получения названий предметов
     for (let i = 0; i < keysWithItems.length; i++) {
-     sum = sum + this.getAverageBySubject[keysWithItems[i]] //перебираем предметы и суммируем средние оценки
+     sum = sum + this.getAverageBySubject(keysWithItems[i]) //перебираем предметы и суммируем средние оценки
     }
-    return sum / this.getAverageBySubject[keysWithItems[i].length]; //возвращ деление суммы на кол-во предметов
+    return sum / keysWithItems.length || 0; //возвращ деление суммы на кол-во предметов
   }
 }
 
