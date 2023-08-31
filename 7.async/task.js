@@ -63,12 +63,12 @@ class AlarmClock {
   }
   //п.7
   resetAllCalls() {
-    this.alarmCollection.forEach((setup) => setup.canCall === true); //присваивайем true
+    this.alarmCollection.forEach((setup) => setup.canCall = true); //присваивайем true
   }
 
   //п.8
   clearAlarms() {
-    stop(); //метод остановки интервала
+    this.stop(); //метод остановки интервала
     this.alarmCollection = []; //удаляем все звонки
   }
 }
